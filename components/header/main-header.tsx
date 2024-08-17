@@ -3,9 +3,9 @@ import MobileNav from './mobile-nav';
 
 const Header = () => {
   return (
-    <nav>
-      <div className="flex justify-between px-4 bg-gray-100 dark:bg-black">
-        <div className="flex items-center space-x-2">
+    <nav className="sticky top-0 z-50 shadow">
+      <div className="flex justify-between px-4 backdrop-blur-2xl absolute w-full">
+        <div className="flex items-center space-x-2 ">
           <svg width="80" height="80" viewBox="0 0 375 374.999991">
             <defs>
               <g />
