@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/theme-provider';
-import { ModeToggle } from '@/components/theme-toggle';
+import Header from '@/components/header/main-header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
           defaultTheme="dark"
           // disableTransitionOnChange
         >
-          <ModeToggle />
+          <Header />
           {children}
         </Providers>
       </body>
