@@ -23,9 +23,12 @@ const Hero = () => {
           <source src="/hero-vid-1.mp4" type="video/mp4" />
         </video>
       </div>
-      <div className="absolute inset-0 flex flex-col md:items-center justify-end md:justify-center gap-4 md:text-center px-6 pb-6 z-20">
-        <h1 className="text-3xl md:text-5xl font-bold">
-          Sell more, increase leads, and be found online
+      <div className="absolute inset-0 flex flex-col items-start justify-center gap-4  px-6 pb-6 z-20 container ">
+        <h1 className="text-5xl md:text-7xl font-bold max-w-4xl">
+          The expert team for your{' '}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070f3] to-[#00cfff]">
+            business growth.
+          </span>
         </h1>
         <p className="text-white md:text-lg">
           Scale your business with integrated marketing and technology
@@ -36,7 +39,7 @@ const Hero = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <Button className="shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-8 py-2 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear border border-white border-dashed md:border-none w-full md:w-fit text-md flex flex-row gap-2">
+          <Button className="shadow-[0_4px_14px_0_rgb(0,118,255,39%)] hover:shadow-[0_6px_20px_rgba(0,118,255,23%)] hover:bg-[rgba(0,118,255,0.9)] px-8 py-2 bg-[#0070f3] rounded-md text-white font-light transition duration-200 ease-linear  w-full md:w-fit text-md flex flex-row gap-2">
             Get started <ArrowRight className="h-4 w-4" />
           </Button>
         </a>

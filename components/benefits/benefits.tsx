@@ -22,14 +22,14 @@ const benefits = [
   },
 ];
 
-const BenefitsSection = () => {
+const Benefits = () => {
   return (
     <section className="relative py-12 md:py-24 lg:py-32">
       <div className="container mx-auto px-6 md:px-12">
         <h2 className="text-3xl sm:text-5xl font-bold md:text-center mb-8">
           Why we’re your{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070f3] to-[#00cfff]">
-            Best Choice
+            best choice
           </span>
         </h2>
         <div className="grid gap-10 grid-cols-1">
@@ -47,7 +47,9 @@ const BenefitsSection = () => {
                     <h3 className="text-xl md:text-3xl font-semibold">
                       {benefit.title}
                     </h3>
-                    <p className="mt-2 md:text-xl">{benefit.description}</p>
+                    <p className="mt-2 md:text-xl max-w-96">
+                      {benefit.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -68,4 +70,4 @@ const BenefitsSection = () => {
   );
 };
 
-export default BenefitsSection;
+export default Benefits;
