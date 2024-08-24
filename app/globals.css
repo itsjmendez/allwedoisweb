@@ -12,7 +12,7 @@
     --popover-foreground: 240 10% 3.9%;
     --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
+    --secondary: 240 4.8% 94%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -65,5 +65,107 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Parent Gradient Layer */
+.gradient-parent {
+  -webkit-mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background: radial-gradient(
+    62% 67.92% at 39% 41.5%,
+    rgba(0, 81, 255, 0) 0%,
+    rgba(0, 153, 255, 0) 36%,
+    rgba(0, 153, 255, 0) 63%,
+    rgba(0, 128, 255, 0.25) 83%,
+    rgb(0, 51, 255) 100%
+  );
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 498px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Custom Gradient Layer 1 */
+.gradient-layer-1 {
+  background: radial-gradient(
+    50% 32% at 50% 100%,
+    #009dff 0%,
+    rgba(0, 217, 255, 0.25) 53%,
+    rgba(0, 119, 255, 0.15) 79%,
+    rgba(0, 178, 255, 0) 100%
+  );
+  position: absolute;
+  inset: 208px 0 0;
+  z-index: 3;
+  animation: auraPulse 6s ease-in-out infinite;
+}
+
+/* Custom Gradient Layer 2 */
+.gradient-layer-2 {
+  -webkit-mask: radial-gradient(
+    73% 93% at 48.5% 40.3%,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.3) 64%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(0, 153, 255, 0) 0%,
+    rgb(0, 178, 255) 100%
+  );
+  position: absolute;
+  inset: 108px 0 0;
+  z-index: 2;
+  animation: auraPulse 8s ease-in-out infinite;
+}
+
+/* Custom Gradient Layer 3 */
+.gradient-layer-3 {
+  -webkit-mask: radial-gradient(
+    50% 131% at 48.7% 31.8%,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.32556) 64%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  background: linear-gradient(
+    180deg,
+    rgba(0, 85, 255, 0) 0%,
+    rgba(8, 0, 255, 0.7) 100%
+  );
+  position: absolute;
+  inset: 208px 0 0;
+  z-index: 0;
+  animation: auraPulse 10s ease-in-out infinite;
+}
+
+/* More Pronounced Breathing Animation */
+@keyframes auraPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    background-position: 50% 100%;
+  }
+  25% {
+    transform: scale(1.1);
+    opacity: 0.7;
+    background-position: 55% 105%;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.6;
+    background-position: 60% 110%;
+  }
+  75% {
+    transform: scale(1.1);
+    opacity: 0.7;
+    background-position: 55% 105%;
   }
 }
