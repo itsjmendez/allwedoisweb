@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { ModeToggle } from '../theme-toggle';
+// import { ModeToggle } from '../theme-toggle';
 
 const MobileNav = () => {
   return (
@@ -41,9 +41,9 @@ const MobileNav = () => {
                 Contact
               </Link>
             </li>
-            <li>
+            {/* <li>
               <ModeToggle />
-            </li>
+            </li> */}
           </ul>
         </SheetContent>
       </Sheet>

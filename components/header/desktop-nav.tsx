@@ -1,4 +1,4 @@
-import { ModeToggle } from '../theme-toggle';
+// import { ModeToggle } from '../theme-toggle';
 import Link from 'next/link';
 
 const DesktopNav = () => {
@@ -20,9 +20,9 @@ const DesktopNav = () => {
             Contact
           </Link>
         </li>
-        <li>
+        {/* <li>
           <ModeToggle />
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
