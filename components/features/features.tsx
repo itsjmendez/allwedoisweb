@@ -1,113 +1,122 @@
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Languages,
   CodeXml,
   Megaphone,
   Eye,
   HeartHandshake,
-  ArrowUpRight,
   TrendingUp,
+  ArrowUpRight,
 } from 'lucide-react';
 
-export default function Features() {
-  const features = [
-    {
-      title: 'Multicultural',
-      href: '/services/multicultural-marketing',
-      description: 'Resonate with your Spanish-speaking customers.',
-      catchyLabel: 'Looking to reach Spanish-speaking audiences?',
-      icon: Languages,
-      color: 'from-purple-500 to-pink-500',
-    },
-    {
-      title: 'Development',
-      href: '/services/web-services',
-      description: 'Upgrade your online presence.',
-      catchyLabel: 'Not happy with your website? ',
-      icon: CodeXml,
-      color: 'from-cyan-500 to-blue-500',
-    },
-    {
-      title: 'Digital',
-      href: '/services/digital-marketing',
-      description: 'Manage your narrative online and earn loyalty.',
-      catchyLabel: 'Not getting enough reach?',
-      icon: Megaphone,
-      color: 'from-green-500 to-teal-500',
-    },
-    {
-      title: 'Branding',
-      href: '/services/branding',
-      description: 'Make your brand unique.',
-      catchyLabel: 'Need help telling your story?',
-      icon: Eye,
-      color: 'from-red-500 to-orange-500',
-    },
-    {
-      title: 'Lifecycle',
-      href: '/services/lifecycle',
-      description: 'Win back customers with CRM optimization.',
-      catchyLabel: 'Need to boost revenue with your CRM?',
-      icon: HeartHandshake,
-      color: 'from-yellow-500 to-amber-500',
-    },
-    {
-      title: 'AOR',
-      href: '/services/aor',
-      description: 'Grow together with your agency of record.',
-      catchyLabel: 'Need a team to grow your business?',
-      icon: TrendingUp,
-      color: 'from-indigo-500 to-purple-500',
-    },
-  ];
+const features = [
+  {
+    title: 'Multicultural',
+    href: '/services/multicultural-marketing',
+    description: 'Resonate with your Spanish-speaking customers.',
+    catchyLabel: 'Looking to reach Spanish-speaking audiences?',
+    icon: Languages,
+  },
+  {
+    title: 'Development',
+    href: '/services/web-services',
+    description: 'Upgrade your online presence.',
+    catchyLabel: 'Not happy with your website? ',
+    icon: CodeXml,
+  },
+  {
+    title: 'Digital',
+    href: '/services/digital-marketing',
+    description: 'Manage your narrative online and earn loyalty.',
+    catchyLabel: 'Not getting enough reach?',
+    icon: Megaphone,
+  },
+  {
+    title: 'Branding',
+    href: '/services/branding',
+    description: 'Make your brand unique.',
+    catchyLabel: 'Need help telling your story?',
+    icon: Eye,
+  },
+  {
+    title: 'Lifecycle',
+    href: '/services/lifecycle',
+    description: 'Win back customers with CRM optimization.',
+    catchyLabel: 'Need to boost revenue with your CRM?',
+    icon: HeartHandshake,
+  },
+  {
+    title: 'AOR',
+    href: '/services/aor',
+    description: 'Grow together with your agency of record.',
+    catchyLabel: 'Need a team to grow your business?',
+    icon: TrendingUp,
+  },
+];
 
+export default function Features() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto">
-        <div className="md:text-center mb-16">
-          <h2 className="text-4xl font-bold sm:text-5xl mb-4">
-            Our solutions for{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-              achieving your goals.
-            </span>
-          </h2>
-          <p className="md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Our team can support your marketing needs across all fronts.
-          </p>
+    <section className="w-full py-12 md:py-24 lg:py-32 bg-background text-white">
+      <div className="container">
+        <div className="flex flex-col md:items-center justify-center space-y-4 md:text-center">
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-[rgb(0,87,255)]">
+              Services
+            </h3>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Elevate Your Brand
+            </h2>
+            <p className="max-w-[900px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Our full spectrum of services empowers your business to thrive in
+              the digital landscape. Whether it&apos;s multicultural marketing
+              or end-to-end agency solutions, we deliver the tools and expertise
+              you need to succeed.
+            </p>
+          </div>
+          <Button
+            asChild
+            size="lg"
+            className="mt-4 bg-[rgb(0,87,255)] text-primary hover:bg-primary/90 hover:text-primary-foreground w-fit"
+          >
+            <Link href={'#'}>Explore Our Services</Link>
+          </Button>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <FeatureCard key={index} feature={feature} />
-          ))}
+        <div className="mx-auto mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white bg-opacity-20 border overflow-hidden">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={index}
+                  className="relative p-6 bg-secondaryBackground flex flex-col h-full"
+                >
+                  <div className="flex-grow space-y-4">
+                    <Icon className="h-10 w-10 text-[rgb(0,87,255)]" />
+                    <h3 className="text-lg font-semibold text-white">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-gray-400">
+                      {feature.catchyLabel}
+                    </p>
+                    <p className="text-gray-300">{feature.description}</p>
+                    <Link
+                      href={feature.href}
+                      className="flex items-center text-[rgb(0,87,255)] text-sm w-fit"
+                    >
+                      Learn More{' '}
+                      <ArrowUpRight
+                        size={16}
+                        className="text-[rgb(0,87,255)]"
+                      />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function FeatureCard({ feature }: { feature: any }) {
-  return (
-    <div
-      className={`relative p-0.5 overflow-hidden rounded-lg bg-gradient-to-br ${feature.color} shadow-lg hover:shadow-xl transition-all duration-300`}
-    >
-      <div className="relative p-6 rounded-lg bg-gray-900 h-full flex flex-col justify-between transition-all duration-300 ease-in-out hover:bg-opacity-90 dark:hover:bg-opacity-90">
-        <div>
-          <feature.icon className="h-12 w-12 mb-4 text-gray-700 dark:text-gray-200 transition-colors duration-300" />
-          <h3 className="text-2xl font-semibold mb-2 transition-colors duration-300">
-            {feature.title}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
-            {feature.description}
-          </p>
-        </div>
-        <Link
-          href={feature.href}
-          className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-300"
-        >
-          Learn more
-          <ArrowUpRight className="h-4 w-4 ml-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-        </Link>
-      </div>
-    </div>
   );
 }
