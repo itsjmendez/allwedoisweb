@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <nav className="sticky top-0 z-50 shadow">
-      <div className="flex justify-between bg-background dark:bg-transparent backdrop-blur-2xl absolute w-full">
+      <div className="flex justify-between bg-background dark:bg-transparent backdrop-blur-2xl w-full">
         <div className="flex justify-between w-full container">
           <Link href="/">
             <svg width="80" height="80" viewBox="0 0 375 374.999991">

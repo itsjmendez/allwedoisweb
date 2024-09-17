@@ -1,9 +1,14 @@
+'use client';
+
+import React, { useState } from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { MessageCircleQuestion, Search } from 'lucide-react';
+import { Button } from '../ui/button';
 
 const faqData = [
   {
@@ -34,29 +39,91 @@ const faqData = [
 ];
 
 const FAQSection = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredFAQs, setFilteredFAQs] = useState(faqData);
+
+  React.useEffect(() => {
+    const filtered = faqData.filter(
+      (faq) =>
+        faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredFAQs(filtered);
+  }, [searchTerm]);
+
   return (
-    <section className="py-16 md:py-24 lg:py-32 ">
-      <div className="container mx-auto">
-        <h2 className="text-3xl sm:text-5xl font-bold md:text-center mb-12">
-          Frequently asked{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0070f3] to-[#00cfff]">
-            questions
-          </span>
-        </h2>
+    <section className="py-16 md:py-24 lg:py-32">
+      <div className="container">
+        <div className="flex flex-col items-center justify-center space-y-4 md:text-center mb-10">
+          <div className="space-y-2">
+            <h3 className="text-sm font-medium uppercase tracking-wider text-[rgb(0,87,255)]">
+              FAQ
+            </h3>
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+              Frequently Asked Questions
+            </h2>
+            <p className="max-w-[900px] text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              Find quick answers to common questions about our services and how
+              we can help your business grow.
+            </p>
+          </div>
+        </div>
+
+        <div className="max-w-2xl mx-auto mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search FAQs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-4 py-2 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-secondaryBackground dark:border dark:text-white"
+            />
+            <Search
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+              size={20}
+            />
+          </div>
+        </div>
+
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full">
-            {faqData.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-lg font-semibold text-start">
+          <Accordion type="single" collapsible className="w-full space-y-4">
+            {filteredFAQs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="bg-white dark:bg-secondaryBackground"
+              >
+                <AccordionTrigger className="text-start px-6 py-4 font-medium text-gray-900 dark:text-white dark:hover:bg-[rgb(0,87,255)]">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 dark:text-gray-300">
+                <AccordionContent className="px-6 py-4 text-gray-600 dark:text-gray-300">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
+
+        {filteredFAQs.length === 0 && (
+          <p className="text-center mt-8 text-gray-600 dark:text-gray-400">
+            No matching questions found. Please try a different search term.
+          </p>
+        )}
+      </div>
+      <div className="mt-4 text-center">
+        <Button
+          asChild
+          size="lg"
+          className="mt-4 bg-[rgb(0,87,255)] text-primary hover:bg-primary/90 hover:text-primary-foreground"
+        >
+          <a
+            href="#"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+          >
+            Send Us A Question
+            <MessageCircleQuestion className="ml-2 h-5 w-5" />
+          </a>
+        </Button>
       </div>
     </section>
   );
