@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <div className="relative h-[calc(100svh-80px)] bg-[rgb(0,87,255)] text-white overflow-hidden flex items-center justify-center">
+    <div className="relative md:h-[calc(100svh-80px)] bg-[rgb(0,87,255)] text-white overflow-hidden flex items-center justify-center">
       {/* Subtle grid pattern */}
       <div
         className="absolute inset-0 z-0"
@@ -15,7 +15,7 @@ export default function Hero() {
         }}
       ></div>
 
-      <div className="relative z-10 container">
+      <div className="relative z-10 container py-6 md:py-0">
         <div className="bg-[rgb(0,87,255)] border md:border-2 border-white border-opacity-40 overflow-hidden">
           <div className="grid md:grid-cols-2 md:divide-x divide-white divide-opacity-40">
             <div className="space-y-6 p-8">
