@@ -1,54 +1,165 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { MessageCircleQuestion, Search } from 'lucide-react';
+import {
+  MessageCircleQuestion,
+  Search,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react';
 import { Button } from '../ui/button';
 
-const faqData = [
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+const faqData: FAQItem[] = [
   {
-    question: 'What services do you offer?',
+    question: 'What is a Multicultural Marketing Strategy?',
     answer:
-      'We offer a wide range of digital marketing services including SEO, PPC, social media marketing, content creation, and web design. Our team specializes in creating customized strategies to meet your specific business needs.',
+      'Multicultural marketing focuses on tailoring messages to diverse audiences by considering their cultural backgrounds, values, and preferences. We help brands connect with various demographic groups through culturally relevant campaigns.',
   },
   {
-    question: 'How long does it take to see results?',
+    question: 'How do you approach web development for businesses?',
     answer:
-      'The timeline for results can vary depending on the specific service and your goals. Generally, you may start seeing initial results within 3-6 months, but sustainable, long-term results typically become more evident after 6-12 months of consistent effort.',
+      'We build scalable, responsive websites tailored to your business needs. Our approach includes user experience (UX) design, front-end and back-end development, and performance optimization to ensure your site is fast, secure, and visually appealing.',
   },
   {
-    question: 'Do you work with small businesses?',
+    question: 'What is digital marketing, and how can it benefit my business?',
     answer:
-      'Yes, we work with businesses of all sizes, from startups to large corporations. We tailor our services to fit the unique needs and budgets of small businesses, helping them compete effectively in the digital landscape.',
+      'Digital marketing involves promoting your business online through strategies such as SEO, social media marketing, email campaigns, and paid ads. It helps increase brand visibility, attract potential customers, and boost sales.',
   },
   {
-    question: 'How do you measure the success of your campaigns?',
+    question: 'How does your branding process work?',
     answer:
-      'We use a variety of metrics to measure success, including website traffic, conversion rates, engagement rates, and ROI. We provide regular reports and analytics to keep you informed about the performance of your campaigns and the progress towards your goals.',
+      'Our branding process starts with understanding your business, target audience, and goals. We then create a unique brand identity, including logos, color schemes, and messaging that resonates with your customers and sets you apart from competitors.',
   },
   {
-    question: 'Can you help with multilingual marketing?',
+    question: 'What is lifecycle marketing?',
     answer:
-      'Absolutely! We have experience in multilingual and multicultural marketing. Our team can help you create and implement strategies to effectively reach diverse audiences in their preferred languages and with culturally relevant content.',
+      'Lifecycle marketing focuses on engaging customers at every stage of their journey—from awareness to purchase and beyond. We help businesses create strategies to nurture leads, convert them into customers, and retain them long-term.',
+  },
+  {
+    question:
+      'What is an Agency of Record (AOR), and how can it benefit my business?',
+    answer:
+      'An Agency of Record (AOR) is a long-term partnership where we manage all aspects of your marketing, from strategy to execution. This ensures consistency in your brand’s message and allows for more efficient and integrated marketing efforts.',
+  },
+  {
+    question: 'How do you integrate multicultural marketing into campaigns?',
+    answer:
+      'We incorporate cultural insights, language, and authentic storytelling to ensure your message resonates with diverse audiences. Our team understands various cultures and adapts campaigns to engage effectively with specific communities.',
+  },
+  {
+    question: 'Can you help with both branding and rebranding?',
+    answer:
+      'Yes, we assist with both creating new brands and revitalizing existing ones. Our team evaluates your brand’s current standing, identifies areas for improvement, and implements strategies that align with your vision and audience.',
+  },
+  {
+    question:
+      'What industries do you specialize in for web development and marketing?',
+    answer:
+      'We work across multiple industries, including e-commerce, technology, healthcare, and more. Our solutions are tailored to meet the specific needs of your industry while ensuring a seamless user experience and impactful marketing strategies.',
+  },
+  {
+    question: 'Do you offer ongoing support after launching a website?',
+    answer:
+      'Yes, we offer post-launch support, including website maintenance, security updates, performance monitoring, and enhancements. Our goal is to ensure your website continues to operate smoothly and meets your business objectives.',
+  },
+  {
+    question: 'What platforms do you specialize in for digital marketing?',
+    answer:
+      'We specialize in various platforms, including Google Ads, Facebook, Instagram, LinkedIn, TikTok, and email marketing tools like Mailchimp. We tailor our approach based on where your target audience is most active.',
+  },
+  {
+    question: 'How do you measure the success of digital marketing campaigns?',
+    answer:
+      'We use key performance indicators (KPIs) such as website traffic, conversion rates, return on investment (ROI), and engagement metrics. We provide regular reports to track progress and adjust strategies as needed.',
+  },
+  {
+    question: 'Can you help with both online and offline branding?',
+    answer:
+      'Absolutely. We create cohesive branding strategies that work across digital and physical spaces, ensuring your brand’s presence is strong both online and offline.',
+  },
+  {
+    question: 'What tools and technologies do you use for web development?',
+    answer:
+      'We utilize a range of website design technologies tailored to your project requirements. Our preferred tools include Framer and Webflow, known for their advanced capabilities. For more complex projects, we also employ React.js frameworks and other cutting-edge technologies to deliver high-performance, scalable solutions.',
+  },
+
+  {
+    question: 'How do you determine pricing for your services?',
+    answer:
+      'We determine pricing based on a thorough analysis of your project’s scope, complexity, and specific requirements. After assessing your needs, we provide a detailed estimate. Once you approve the value and scope, we proceed with the project.',
+  },
+  {
+    question:
+      'What is the process for starting a new project with your agency?',
+    answer:
+      'Our process begins with a detailed analysis of your project to understand your objectives and requirements. We then create a customized estimate based on this analysis. Once you are satisfied with the proposed value and scope, we will initiate the project and work closely with you to achieve your goals.',
+  },
+  {
+    question: 'Are there any additional costs I should be aware of?',
+    answer:
+      'Our estimates cover the agreed-upon scope of work. However, if additional requirements or changes arise during the project, we will discuss any potential adjustments to the cost with you before proceeding. Transparency is key to ensuring you are fully informed throughout the process.',
+  },
+  {
+    question: 'Do you offer payment plans or financing options?',
+    answer:
+      'We offer flexible payment plans tailored to the needs of your project. Payment terms are outlined in the project proposal and can be adjusted based on your preferences and budget. Please discuss your payment needs with us, and we’ll work to accommodate them.',
+  },
+  {
+    question:
+      'What sets your agency apart from other digital marketing agencies?',
+    answer: 'We are just too good at what we do.',
   },
 ];
 
 const FAQSection = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredFAQs, setFilteredFAQs] = useState(faqData);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [isAllExpanded, setIsAllExpanded] = useState<boolean>(false);
 
-  React.useEffect(() => {
-    const filtered = faqData.filter(
+  const filteredFAQs = useMemo(() => {
+    return faqData.filter(
       (faq) =>
         faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
         faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredFAQs(filtered);
+  }, [searchTerm]);
+
+  const toggleAccordion = (index: number) => {
+    setExpandedItems((prev) =>
+      prev.includes(index.toString())
+        ? prev.filter((i) => i !== index.toString())
+        : [...prev, index.toString()]
+    );
+  };
+
+  const toggleAllAccordions = () => {
+    if (isAllExpanded) {
+      setExpandedItems([]);
+    } else {
+      setExpandedItems(filteredFAQs.map((_, index) => index.toString()));
+    }
+    setIsAllExpanded(!isAllExpanded);
+  };
+
+  useEffect(() => {
+    setExpandedItems([]);
+    setIsAllExpanded(false);
   }, [searchTerm]);
 
   return (
@@ -86,17 +197,44 @@ const FAQSection = () => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="w-full space-y-4">
+          <div className="flex justify-end mb-4">
+            <Button
+              onClick={toggleAllAccordions}
+              variant="outline"
+              className="text-sm"
+            >
+              {isAllExpanded ? (
+                <>
+                  <ChevronUp className="mr-2 h-4 w-4" />
+                  Collapse All
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="mr-2 h-4 w-4" />
+                  Expand All
+                </>
+              )}
+            </Button>
+          </div>
+          <Accordion
+            type="multiple"
+            value={expandedItems}
+            onValueChange={setExpandedItems}
+            className="w-full space-y-4"
+          >
             {filteredFAQs.map((faq, index) => (
               <AccordionItem
                 key={index}
-                value={`item-${index}`}
+                value={index.toString()}
                 className="bg-white dark:bg-secondaryBackground"
               >
-                <AccordionTrigger className="text-start px-6 py-4 font-medium text-gray-900 dark:text-white dark:hover:bg-[rgb(0,87,255)]">
+                <AccordionTrigger
+                  onClick={() => toggleAccordion(index)}
+                  className="text-start text-sm md:text-base px-6 py-4 text-gray-900 dark:text-white dark:hover:bg-[rgb(0,87,255)]"
+                >
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="px-6 py-4 text-gray-600 dark:text-gray-300">
+                <AccordionContent className="px-6 py-4 text-sm md:text-base text-gray-600 dark:text-gray-300">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
