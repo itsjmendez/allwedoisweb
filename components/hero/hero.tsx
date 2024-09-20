@@ -41,13 +41,14 @@ export default function Hero() {
                     Get Started <ArrowRight size={16} className="ml-2" />
                   </a>
                 </Button>
-                <Button
+                {/* TODO: Add a link to our services */}
+                {/* <Button
                   variant="outline"
                   className="bg-[rgb(0,87,255)] border-white w-full sm:w-fit hover:border-[rgb(0,87,255)]"
                   asChild
                 >
                   <Link href={'#services'}>Explore Services</Link>
-                </Button>
+                </Button> */}
               </div>
             </div>
             <div className="relative">
