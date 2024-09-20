@@ -74,13 +74,14 @@ export default function Features() {
               you need to succeed.
             </p>
           </div>
-          <Button
+          {/* TODO: Add button to explore our services page */}
+          {/* <Button
             asChild
             size="lg"
             className="mt-4 bg-[rgb(0,87,255)] text-primary hover:bg-primary/90 hover:text-primary-foreground w-fit"
           >
             <Link href={'#'}>Explore Our Services</Link>
-          </Button>
+          </Button> */}
         </div>
         <div className="mx-auto mt-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white bg-opacity-20 border overflow-hidden">
@@ -100,7 +101,8 @@ export default function Features() {
                       {feature.catchyLabel}
                     </p>
                     <p className="text-gray-300">{feature.description}</p>
-                    <Link
+                    {/* TODO: Add learn more links to each feature page */}
+                    {/* <Link
                       href={feature.href}
                       className="flex items-center text-[rgb(0,87,255)] text-sm w-fit"
                     >
@@ -109,7 +111,7 @@ export default function Features() {
                         size={16}
                         className="text-[rgb(0,87,255)]"
                       />
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               );
